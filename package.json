@@ -12,6 +12,7 @@
         "grunt-contrib-stylus": ">= 0.3.x",
         "grunt-reload": ">= 0.2.x",
         "grunt-shell": "0.1.x",
-        "requirejs": "2.1.x"
+        "requirejs": "2.1.x",
+        "request": "2.12.x"
     }
 }
