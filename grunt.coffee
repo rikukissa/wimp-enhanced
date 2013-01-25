@@ -1,3 +1,5 @@
+serverProc = null
+
 module.exports = (grunt) ->
   grunt.initConfig
     coffee:
@@ -17,14 +19,10 @@ module.exports = (grunt) ->
     stylus:
       compile:
         files:
-          "public/css/styles.css": "src/stylus/*.styl"
+          "public/css/*.css": "src/stylus/*.styl"
 
         options:
           compress: true
-
-    server:
-      port: 8000
-      base: "public"
 
     watch:
       coffee:
@@ -40,14 +38,30 @@ module.exports = (grunt) ->
         tasks: ["jade", "reload"]
 
     reload:
-      port: 6001
+      port: 80
       proxy:
         host: 'localhost'
         port: 8000
 
   grunt.loadNpmTasks "grunt-reload"
+  grunt.loadNpmTasks "grunt-shell"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-jade"
   grunt.loadNpmTasks "grunt-contrib-stylus"
 
+  grunt.registerTask "server", () ->
+    execServer = () ->
+      exec = 'node_modules/coffee-script/bin/coffee'
+      exec = __dirname + '/node_modules/.bin/coffee.cmd' if process.platform is 'win32'
+      serverProc = require('child_process').spawn exec, ['runserver.coffee'],
+        stdio: 'inherit'
+
+    if serverProc?
+      console.log "trying to kill old server"
+      serverProc.on 'close', execServer
+      serverProc.kill()
+    else
+      execServer()
+
   grunt.registerTask "default", "coffee jade stylus server reload watch"
+  grunt.registerTask "compile", "coffee jade stylus"

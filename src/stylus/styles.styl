@@ -1,0 +1,99 @@
+*
+  margin 0
+  padding 0
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+  box-sizing border-box
+
+html, body
+  width 100%
+  height 100%
+  background #202020
+
+#main
+  width 100%
+  height 100%
+  padding-bottom 70px
+video
+  width 100%
+  height 100%
+  display block
+.title
+  width 100%
+  padding 20px 0
+  text-align center
+  color #FFF
+  font-size 30px
+  position absolute
+  text-align center
+  background rgba(0, 0, 0, 0.2)
+  -webkit-transition opacity 1s ease
+  -moz-transition opacity 1s ease
+  -o-transition opacity 1s ease
+  transition opacity 1s ease
+  &.hidden
+    opacity 0
+#controls
+  position absolute
+  bottom 0
+  height 70px
+  width 100%
+  position relative
+  padding-left 160px
+  padding-right 80px
+  background-color #f5f5f5
+  background-image -moz-linear-gradient(top,#fff,#e6e6e6)
+  background-image -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6))
+  background-image -webkit-linear-gradient(top,#fff,#e6e6e6)
+  background-image -o-linear-gradient(top,#fff,#e6e6e6)
+  background-image linear-gradient(to bottom,#fff,#e6e6e6)
+  background-repeat repeat-x
+  border 1px solid #bbb
+  border-color #e6e6e6 #e6e6e6 #bfbfbf
+  border-color rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25)
+  border-bottom-color #a2a2a2
+  -webkit-box-shadow inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05)
+  -moz-box-shadow inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05)
+  box-shadow inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05)
+  .info-progress
+    width 100%
+    height 100%
+    padding 0 30px
+    overflow hidden
+    .progress
+      margin-top 22px
+      cursor pointer
+    .bar
+      -webkit-transition width .3s ease
+      -moz-transition width .3s ease
+      -o-transition width .3s ease
+      transition width .3s ease
+  nav
+    height 100%
+    position absolute
+    left 0
+    top 0
+    display inline-block
+    border-right 1px solid #DDD
+  
+    .btn
+      width 80px
+      height 100%
+      float left
+      position relative
+      border-left 1px solid #DDD
+      border-right 1px solid #FFF
+      border-radius 0
+      margin 0
+      border-top 0
+      border-bottom 0
+      i
+        position absolute
+        top 50%
+        left 50%
+        margin-top -7px
+        margin-left -7px
+    
+    &:last-child
+      left auto
+      right 0

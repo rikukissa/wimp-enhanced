@@ -1,21 +1,35 @@
 doctype 5
 html
   head
+    link(rel='stylesheet', type='text/css', href="css/bootstrap.min.css")
     link(rel='stylesheet', type='text/css', href="css/styles.css")
     script(type='text/javascript', src='js/vendor/require.js')
     script(type='text/javascript')
       require.config({
         baseUrl: "js/modules",
         paths: {
-          'jquery': 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min'
+          'jquery': 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min',
+          'knockout': '../vendor/knockout'
         }
       });
     title HTML5 Template Project
   body
     #main
-      h1 Hello Template
-
-    script(type='text/javascript')
-      require(['app'], function(app){ app.main() })
+      .title(data-bind='css: {hidden: !titleVisible() }, text: title()')
+      video#video(width='0', height='0', data-bind='event: {mouseover: showTitle}')
+      #controls
+        nav
+          .btn(data-bind='click: function() { toggleState() }')
+            i(data-bind='css: { "icon-play": !playing(), "icon-pause": playing() }')
+          .btn(data-bind='click: function() { next() }')
+            i.icon-refresh
+        .info-progress
+          .progress.progress-info(data-bind='click: setTime')
+            .bar(data-bind='style: { width: progress() + "%" }')
+        nav
+          .btn
+            i.icon-volume-down
+      script(type='text/javascript')
+        require(['app'], function(app){ app.main() })
 
 
