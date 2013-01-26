@@ -1,9 +1,13 @@
 define (require) ->
   $ = require('jquery') 
-  
-  mousedown = false
-
+  ui = require('ui')
   init: (vmo) ->
-    $('.volume-handle').on 'mousedown', -> mousedown = true
-    $('.volume-handle').on 'mouseup', -> mousedown = false
-    $('.volume-handle').on 'mousemove', () ->
+    $('.volume-slider').slider
+      orientation: 'vertical'
+      range: 'min'
+      min: 0
+      max: 100
+      value: vmo.volume()
+      slide: (event, ui) ->
+        $('#volume').val(ui.value)
+        vmo.video.volume = ui.value / 100

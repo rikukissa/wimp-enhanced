@@ -9,7 +9,12 @@ html
         baseUrl: "js/modules",
         paths: {
           'jquery': 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min',
-          'knockout': '../vendor/knockout'
+          'knockout': '../vendor/knockout',
+          'moment': '../vendor/moment',
+          'ui': '../vendor/jquery-ui-1.9.2.custom.min'
+        },
+        shim: {
+          'ui': ['jquery']
         }
       });
     title HTML5 Template Project
@@ -24,13 +29,16 @@ html
           .btn(data-bind='click: function() { next() }')
             i.icon-refresh
         .control-progress
-          .progress.progress-info(data-bind='click: setTime')
+          .progress(data-bind='click: setTime')
             .bar(data-bind='style: { width: progress() + "%" }')
+          .progress-info
+            span(data-bind='text: currentTime()')
+            span(data-bind='text: duration()')
         nav
-          .control-volume
+          .control-volume(data-bind='visible: volumeVisible()')
             .volume-slider
-              .volume-handle
-          .btn
+            input#volume(type='hidden', data-bind='value: volume')
+          .btn(data-bind='click: toggleVolume')
             i.icon-volume-down
       script(type='text/javascript')
         require(['app'], function(app){ app.main() })

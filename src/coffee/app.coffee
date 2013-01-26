@@ -1,20 +1,30 @@
 
 define (require) ->
-  $     = require('jquery')
-  ko    = require('knockout')
-
+  $       = require('jquery')
+  ko      = require('knockout')
+  moment  = require('moment')
+  videoVolume = 10
   class AppViewModel
     constructor: () ->
       @video = document.getElementById 'video'
+      @video.volume = videoVolume / 100
       @cache = []
 
     title: ko.observable('')
+    volume: ko.observable(videoVolume)
     playing: ko.observable(false)
+    duration: ko.observable(0)
     progress: ko.observable(0)
+    currentTime: ko.observable(0)
     titleVisible: ko.observable(false)
+    volumeVisible: ko.observable(false)
 
-    setTime: (v, e) -> video.currentTime =  e.offsetX / $('.progress-info').width() * @video.duration
-          
+    setTime: (v, e) -> video.currentTime =  e.offsetX / $('.progress').width() * @video.duration
+    toggleVolume: () ->
+      if @volumeVisible()
+        @volumeVisible(false)
+      else
+        @volumeVisible(true)
     showTitle: ->
       @titleVisible(true)
       setTimeout () =>
@@ -63,6 +73,9 @@ define (require) ->
 
     setProgress: =>
       @progress @video.currentTime / @video.duration * 100
+      
+      @currentTime Math.round(@video.currentTime)
+      @duration Math.round @video.duration
   
 
   main: () -> 
