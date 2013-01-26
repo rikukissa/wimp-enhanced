@@ -16,17 +16,20 @@ html
   body
     #main
       .title(data-bind='css: {hidden: !titleVisible() }, text: title()')
-      video#video(width='0', height='0', data-bind='event: {mouseover: showTitle}')
+      video#video(width='0', height='0', data-bind='event: {mouseover: showTitle}, click: function() { toggleState() }')
       #controls
         nav
           .btn(data-bind='click: function() { toggleState() }')
             i(data-bind='css: { "icon-play": !playing(), "icon-pause": playing() }')
           .btn(data-bind='click: function() { next() }')
             i.icon-refresh
-        .info-progress
+        .control-progress
           .progress.progress-info(data-bind='click: setTime')
             .bar(data-bind='style: { width: progress() + "%" }')
         nav
+          .control-volume
+            .volume-slider
+              .volume-handle
           .btn
             i.icon-volume-down
       script(type='text/javascript')

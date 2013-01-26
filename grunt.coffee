@@ -38,10 +38,10 @@ module.exports = (grunt) ->
         tasks: ["jade", "reload"]
 
     reload:
-      port: 80
+      port: 6001
       proxy:
         host: 'localhost'
-        port: 8000
+        port: 8001
 
   grunt.loadNpmTasks "grunt-reload"
   grunt.loadNpmTasks "grunt-shell"
